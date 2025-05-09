@@ -4,10 +4,11 @@ import { sessionOptions, SessionData, defaultSession } from "./lib";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
+import type { LoginFormState } from "./lib";
 
 
-let username = "Alex";
-let password = "";
+const username = "Alex";
+
 let isPremium = true;
 
 export const getSession = async () => {
@@ -20,11 +21,18 @@ if (!session.isLoggedIn) {
  
   return session;
 }; 
-export const login = async (prevState: { error:undefined | string }, formData: FormData) => {
+
+
+  export const login = async (
+    prevState: LoginFormState,
+    formData: FormData
+  ): Promise<LoginFormState> => {
+
+
 
    const session = await getSession();
    const formUsername = formData.get("username");
-   const formPassword = formData.get("password");
+  
 
 
 // Check if the username and password are correct in DB

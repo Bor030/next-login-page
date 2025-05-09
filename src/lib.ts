@@ -8,7 +8,12 @@ export interface SessionData {
    isLoggedIn: boolean;
    
    
+   
 }
+export interface LoginFormState {
+    error?: string;
+  }
+  
 export const defaultSession: SessionData = {
 
     isLoggedIn: false

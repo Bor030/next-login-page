@@ -2,8 +2,19 @@
 import { useActionState } from "react";
 import { login } from "../actions";
 
+interface LoginFormState {
+  error?: string;
+}
+
+
+
+
+
 const LoginForm = () => {
-  const [state, formAction] = useActionState<any, FormData>(login, undefined);
+  
+  const [state, formAction] = useActionState<LoginFormState, FormData>(login, {
+    error: undefined,
+  });
 
   return (
     <form action={formAction}>
