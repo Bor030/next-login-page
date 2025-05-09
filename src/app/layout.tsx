@@ -1,10 +1,19 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Montserrat } from "next/font/google";
 import "./globals.css";
+import Navbar from "../components/navbar";
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+});
+
+const montserrat = Montserrat({
+  subsets: ['latin'],
+  weight: ['600'], // Pick weights you need
+  display: 'swap',
+  variable: "--font-montserrat",
 });
 
 const geistMono = Geist_Mono({
@@ -24,11 +33,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
-      </body>
-    </html>
+
+
+ <body className={`${geistSans.variable} ${geistMono.variable} antialiased relative`}>
+  
+  <div className="absolute inset-0 bg-[#0a1d42]/90 z-0" />
+  
+ 
+  <div className="relative z-10 container">
+  <h1 className={`title ${montserrat.className}`}>Webindustrie Next Auth</h1>
+    <Navbar />
+    <div className="content">{children}</div>
+  </div>
+</body> 
+
+</html>
   );
 }
